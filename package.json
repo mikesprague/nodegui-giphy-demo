@@ -80,7 +80,7 @@
         "@babel/preset-env",
         {
           "targets": {
-            "node": "latest"
+            "node": "12"
           }
         }
       ]
