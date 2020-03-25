@@ -20,14 +20,12 @@ const {
 const axios = require('axios').default;
 const path = require('path');
 const iconImg = require('../assets/systray.png').default;
-require('dotenv').config();
-
-const GIPHY_API_KEY = '{{YOUR_GIPHY_API_KEY}}';
 
 const searchGifs = async (searchTerm) => {
   const url = 'https://api.giphy.com/v1/gifs/search';
   const res = await axios.get(url, {
     params: {
+      // eslint-disable-next-line no-undef
       api_key: GIPHY_API_KEY,
       limit: 25,
       q: searchTerm,
