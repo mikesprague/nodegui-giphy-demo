@@ -1,0 +1,154 @@
+{
+  "name": "nodegui-giphy-demo",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Simple NodeGui demo using Giphy API to search/select an animated GIF",
+  "main": "index.js",
+  "engines": {
+    "node": ">= 12.x",
+    "npm": ">= 6.x",
+    "yarn": ">= 1.20.x"
+  },
+  "scripts": {
+    "build": "webpack -p",
+    "clean": "rm -rf ./dist ./deploy",
+    "deploy": "yarn clean && yarn nginit && yarn build && yarn package",
+    "nginit": "nodegui-packer --init GiphySearchDemo",
+    "package": "yarn nodegui-packer --pack ./dist",
+    "start": "webpack -d && qode ./dist/index.js",
+    "debug": "webpack && qode --inspect ./dist/index.js"
+  },
+  "keywords": [
+    "nodejs",
+    "nodegui",
+    "giphy"
+  ],
+  "author": {
+    "name": "Michael Sprague",
+    "email": "mikesprague@gmail.com"
+  },
+  "repository": {
+    "url": "https://github.com/mikesprague/nodegui-giphy-demo"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@babel/runtime": "^7.9.2",
+    "@nodegui/nodegui": "^0.17.0",
+    "axios": "^0.19.2",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/plugin-transform-runtime": "7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@nodegui/packer": "^1.4.0",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-compat": "^3.5.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-security": "^1.4.0",
+    "file-loader": "^6.0.0",
+    "native-addon-loader": "^2.0.1",
+    "prettier": "^2.0.2",
+    "prettier-eslint": "^9.0.1",
+    "prettier-stylelint": "^0.4.2",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  },
+  "babel": {
+    "plugins": [
+      [
+        "@babel/plugin-transform-runtime",
+        {
+          "corejs": false,
+          "helpers": true,
+          "regenerator": true,
+          "useESModules": true
+        }
+      ]
+    ],
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "latest"
+          }
+        }
+      ]
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": false,
+      "commonjs": true,
+      "es6": true,
+      "node": true
+    },
+    "extends": [
+      "airbnb-base",
+      "plugin:security/recommended",
+      "prettier"
+    ],
+    "plugins": [
+      "babel",
+      "compat",
+      "import",
+      "prettier",
+      "security"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint",
+      "ecmaVersion": 9,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "impliedStrict": true,
+        "modules": true
+      }
+    },
+    "rules": {
+      "curly": "error",
+      "object-curly-newline": "error",
+      "semi": "error",
+      "prefer-arrow-callback": "warn",
+      "arrow-parens": "error",
+      "arrow-spacing": "error",
+      "eqeqeq": "error",
+      "quotes": [
+        "error",
+        "single",
+        {
+          "avoidEscape": true,
+          "allowTemplateLiterals": true
+        }
+      ],
+      "max-len": [
+        "warn",
+        {
+          "code": 120,
+          "tabWidth": 2,
+          "ignoreUrls": true
+        }
+      ]
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "arrowParens": "always",
+    "semi": true,
+    "tabWidth": 2,
+    "plugins": [
+      "all"
+    ],
+    "printWidth": 120
+  }
+}
